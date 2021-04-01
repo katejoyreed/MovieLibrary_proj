@@ -54,8 +54,18 @@ namespace MovieLibraryAPI.Controllers
 
         // PUT api/<FilmController>/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        public IActionResult Put(int id, [FromBody] Movie movie)
         {
+            try
+            {
+                _context.Movies.Update(movie);
+                _context.SaveChanges();
+                return Ok();
+            }
+            catch (Exception oops)
+            {
+                return BadRequest(oops);
+            }
         }
 
         // DELETE api/<FilmController>/5
