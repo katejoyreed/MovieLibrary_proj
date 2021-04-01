@@ -21,10 +21,10 @@ namespace MovieLibraryAPI.Controllers
         
         // GET: api/<FilmController>
         [HttpGet]
-        public IEnumerable<string> Get()
-        {
-            return new string[] { "value1", "value2" };
-        }
+       // public IEnumerable<string> Get()
+        //{
+           
+       // }
 
         // GET api/<FilmController>/5
         [HttpGet("{id}")]

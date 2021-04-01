@@ -14,6 +14,6 @@ namespace MovieLibraryAPI.Data
         {
             
         }
-        DbSet<Movie> Movies { get; set; }
+        public DbSet<Movie> Movies { get; set; }
     }
 }
