@@ -37,6 +37,29 @@ namespace MovieLibraryAPI.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Movies");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Director = "Martin Scorsese",
+                            Genre = "Drama",
+                            Title = "The Departed"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Director = "Christopher Nolan",
+                            Genre = "Drama",
+                            Title = "The Dark Knight"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Director = "Christopher Nolan",
+                            Genre = "Drama",
+                            Title = "Inception"
+                        });
                 });
 #pragma warning restore 612, 618
         }

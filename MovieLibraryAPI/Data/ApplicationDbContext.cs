@@ -14,6 +14,17 @@ namespace MovieLibraryAPI.Data
         {
             
         }
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+            // Seed data - needs migration
+            modelBuilder.Entity<Movie>()
+             .HasData(
+                new Movie { Id = 1, Title = "The Departed", Genre = "Drama", Director = "Martin Scorsese" },
+                new Movie { Id = 2, Title = "The Dark Knight", Genre = "Drama", Director = "Christopher Nolan" },
+                new Movie { Id = 3, Title = "Inception", Genre = "Drama", Director = "Christopher Nolan" });
+        }
+        
         public DbSet<Movie> Movies { get; set; }
     }
 }

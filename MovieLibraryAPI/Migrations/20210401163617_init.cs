@@ -20,6 +20,21 @@ namespace MovieLibraryAPI.Migrations
                 {
                     table.PrimaryKey("PK_Movies", x => x.Id);
                 });
+
+            migrationBuilder.InsertData(
+                table: "Movies",
+                columns: new[] { "Id", "Director", "Genre", "Title" },
+                values: new object[] { 1, "Martin Scorsese", "Drama", "The Departed" });
+
+            migrationBuilder.InsertData(
+                table: "Movies",
+                columns: new[] { "Id", "Director", "Genre", "Title" },
+                values: new object[] { 2, "Christopher Nolan", "Drama", "The Dark Knight" });
+
+            migrationBuilder.InsertData(
+                table: "Movies",
+                columns: new[] { "Id", "Director", "Genre", "Title" },
+                values: new object[] { 3, "Christopher Nolan", "Drama", "Inception" });
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
