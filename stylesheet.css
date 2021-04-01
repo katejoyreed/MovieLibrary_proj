@@ -4,6 +4,12 @@ background-color: ghostwhite;
 h1{
     color: black;
     font-family: sans-serif;
+    text-align: center;
+}
+p {
+color: black;
+font-family: sans-serif;
+text-align: center;
 }
 
    
