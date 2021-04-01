@@ -58,7 +58,7 @@ namespace MovieLibraryAPI.Controllers
         {
             try
             {
-                _context.Movies.Update(movie);
+                _context.Entry(movie).State = Microsoft.EntityFrameworkCore.EntityState.Modified; 
                 _context.SaveChanges();
                 return Ok();
             }
@@ -70,8 +70,12 @@ namespace MovieLibraryAPI.Controllers
 
         // DELETE api/<FilmController>/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public IActionResult Delete(int id)
         {
+            var movie = _context.Movies.Where(x => x.Id == id).FirstOrDefault();
+            _context.Movies.Remove(movie);
+            _context.SaveChangesAsync();
+            return Ok(movie);
         }
     }
 }
