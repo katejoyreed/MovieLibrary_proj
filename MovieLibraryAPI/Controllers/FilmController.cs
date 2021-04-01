@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using MovieLibraryAPI.Data;
+using MovieLibraryAPI.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,22 +22,34 @@ namespace MovieLibraryAPI.Controllers
         
         // GET: api/<FilmController>
         [HttpGet]
-       // public IEnumerable<string> Get()
-        //{
-           
-       // }
+        public IActionResult Get()
+        {
+            var movies = _context.Movies.ToList();
+            return Ok(movies);
+        }
 
         // GET api/<FilmController>/5
         [HttpGet("{id}")]
-        public string Get(int id)
+        public IActionResult Get(int id)
         {
-            return "value";
+            var movie = _context.Movies.Where(x => x.Id == id).FirstOrDefault();
+            return Ok(movie);
         }
 
         // POST api/<FilmController>
         [HttpPost]
-        public void Post([FromBody] string value)
+        public IActionResult Post([FromBody] Movie movie)
         {
+            try 
+            {
+                _context.Movies.Add(movie);
+                _context.SaveChanges();
+                return CreatedAtAction(nameof(Get), new { id = movie.Id }, movie);
+            }
+            catch (Exception oops)
+            {
+                return BadRequest(oops);
+            }
         }
 
         // PUT api/<FilmController>/5
