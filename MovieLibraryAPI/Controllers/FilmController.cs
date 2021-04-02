@@ -54,7 +54,7 @@ namespace MovieLibraryAPI.Controllers
 
         // PUT api/<FilmController>/5
         [HttpPut("{id}")]
-        public IActionResult Put(int id, [FromBody] Movie movie)
+        public IActionResult Put([FromBody] Movie movie)
         {
             try
             {
