@@ -10,11 +10,9 @@
 <body>
     
     <h1>Movie Library</h1>
-    <div id="movies"></div>
+    
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="app.js"></script>
 
     <p><iframe width="560" height="315" src="https://www.youtube.com/embed/loqYlYqtsmY?autoplay=1&&showinfo=0&loop=1&mute=1" 
@@ -22,45 +20,11 @@
         clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
         allowfullscreen></iframe></p>
 
-        <div class="container pt-4">
-            <div class="table-responsive">
-                <table class="table table-bordered">
-                    <thead>
-                        <tr>
-                            <th class="text-center">Title</th>
-                            <th class="text-center">Genre</th>
-                            <th class="text-center">Director</th>
-                            <th class="text-center">Edit</th>
-                            <th class="text-center">Remove</th>
-                        </tr>
-                    </thead>
-                    <tbody id="tbody">
-                        <form>
-                        <input type="button" class="call-btn-text"
-                        value=" Click to add Title">
-                        <br>
-                        <input type="button" class="call-btn-text"
-                        value=" Click to add Genre">
-                        <br>
-                        <input type="button" class="call-btn-txt"
-                        value=" Click to add Director">
-                        <br>
-                        </form>
-                        <form id="myform"></form>
-                    </tbody>
-                </table>
-            </div>
-            <button class="btn btn-md btn-primary"
-            id ="addBtn" type="button">Add Row</button>
-        </div>
+       <div><a href="library.html"><button type="button">See All Movies</button></a></div> 
         
-        <div id="postResponse"></div>
-        <form id="postRequest">
-            <input type="text" id="title" name="title" placeholder="Title"/>
-            <input type="text" id="genre" name="genre" placeholder="Genre"/>
-            <input type="text" id="director" name="director" placeholder="Director"/>
-            <button type="submit" onclick="processPostForm()">Add Film</button>
-        </form>
+        
+        
+        
 
     
    

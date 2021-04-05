@@ -22,9 +22,19 @@ form {
     text-align: center; 
 }
 table{
+    width: 100%;
+}
+th {
     color: black;
     font-family: sans-serif;
     text-align: center; 
+    padding: 6px;
+}
+td {
+    color: black;
+    font-family: sans-serif;
+    text-align: center; 
+    padding: 6px;
 }
 
    

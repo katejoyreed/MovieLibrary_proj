@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Library</title>
+    <link rel = "stylesheet" href="stylesheet.css"/>
+</head>
+<body>
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="app.js"></script>
+    <div id="movies"></div>
+    
+
+    <table class="table table-striped">
+        <tr class="bg-info">
+            <th>Title</th>
+            <th>Genre</th>
+            <th>Director</th>
+        </tr>
+        <tbody id="movieTable">
+
+        </tbody>
+    </table>
+
+
+    <script>
+        var myArray = []
+
+        $.ajax({
+            url: "https://localhost:44347/api/Film/",
+        contentType: 'application/json',
+        data: JSONObject = {"Movie": "Title, Genre, Director, ID"},
+        headers: {'Access-Control-Allow-Origin': '*'},
+        dataType: 'json',
+        type: 'GET',
+        success: function(data){
+            myArray = data
+            buildTable(myArray)
+        }
+        })
+
+        function buildTable(data){
+            var table = document.getElementById(movieTable)
+
+            for(var i = 0; i <data.length; i++){
+                var row = $(`<tr>
+                    <td>` + data[i].title +`</td>
+                    <td>` + data[i].genre +`</td>
+                    <td>` + data[i].director +`</td>
+                    </tr>`);
+                    
+                    
+                    $('#movieTable').append(row);
+            }
+        }
+
+    </script>
+    <div id="postResponse"></div>
+    <form id="postRequest">
+        <input type="text" id="title" name="title" placeholder="Title"/>
+        <input type="text" id="genre" name="genre" placeholder="Genre"/>
+        <input type="text" id="director" name="director" placeholder="Director"/>
+        <button type="submit" onclick="processPostForm()">Add Film</button>
+    </form>
+
+
+</body>
+</html>
