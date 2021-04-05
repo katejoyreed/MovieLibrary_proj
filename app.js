@@ -1,18 +1,16 @@
 
 
 
-//$(document).ready(function(){
+$(document).ready(function(){
+  
    
-    //var data = [["City 1", "City 2", "City 3"],
-    //["New York", "LA", "Seattle"]]
-    //var table = makeTable($(document.body), data);
-    //return table;
-//});
+});
 
-function movieTable(){
-    
-}
-//$(function(){
+
+
+
+
+//function GetAllMovies(){
     $.ajax({
         url: "https://localhost:44347/api/Film/",
         contentType: 'application/json',
@@ -24,43 +22,45 @@ function movieTable(){
             $.each(data, function(index, el){
                 $("#movies").append(`<div>
                     <div>${index}</div>
-                    <div style="color:red">Title: ${el.title}</div>
+                    <div>Title: ${el.title}</div>
                     <div>Director: ${el.director}</div>
                     <div>Genre: ${el.genre}</div>
-                    <button onClick="editMovie(${el.movieId})">CLick me!</button>
+                    <button onClick="editMovie(${el.movieId})">Click me!</button>
                     </div><br>`)
             })
         }
     })
-//})
-function populateTable(){
-    $("#movies").html("")
-    $.get("https://localhost:44347/api/Film/", function(data){
-        console.log(data);
-
-        $.each(data, function(index, el){
-            $("#movies").append(`<div>
-                <div>${index}</div>
-                <div style="color:red">Title: ${el.title}</div>
-                <div>Director: ${el.director}</div>
-                <div>Genre: ${el.genre}</div>
-                <button onClick="editMovie(${el.movieId})">CLick me!</button>
-                </div><br>`)
-        })
-       
-    }).fail(function(err){
-        console.log(err)
-    })
-}
-function makeTable(container, data){
-    var table = $("<table/>").addClass('CSSTableGenerator');
-    $.each(data, function(rowIndex, r) {
-        var row = $("<tr/>");
-        $.each(r, function(colIndex, c){
-            row.append($("<t"+(rowIndex == 0 ?
-                "h" : "d") + "/>").text(c));
-        });
-        table.append(row);
+//}
+$(document).ready(function(){
+    var rowIdx = 0;
+    $('#addBtn').on('click',function(){
+        $('#tbody').append(`<tr id="R${++rowIdx}"
+        <td class="row-index text-center">
+        <p>Row ${rowIdx}</p>
+        </td>
+        <td class="text-center">
+        <button class="btn btn-danger remove"
+        type="button">Remove</button>
+        </td>
+        <tr>;`);
     });
-    return container.append(table);
-}
+    $('#tbody').on('click', 'remove', function(){
+        var movie = $(this).closest('tr').nextAll();
+        movie.each(function(){
+            var id = $(this).attr('id');
+            var idx = $(this).movies('.row-index').movies('p');
+            var dig = parseInt(id.substring(1));
+            idx.html(`Row ${dig - 1}`);
+            $(this).attr('id',`R${dig - 1}`);
+            $(this).closest('tr').remove();
+            rowIdx--;
+        })
+    })
+
+})
+
+$("button").click(function(){
+    $.post("https://localhost:44347/api/Film/")
+})
+
+
