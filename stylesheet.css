@@ -11,5 +11,20 @@ color: black;
 font-family: sans-serif;
 text-align: center;
 }
+div {
+    color: black;
+    font-family: sans-serif;
+    text-align: center; 
+}
+form {
+    color: black;
+    font-family: sans-serif;
+    text-align: center; 
+}
+table{
+    color: black;
+    font-family: sans-serif;
+    text-align: center; 
+}
 
    
