@@ -19,15 +19,27 @@ function processPostForm(){
 
 
 }
+function putInfo(id){
+    let movieId = id;
+    let title = prompt("Title: ");
+    let genre = prompt("Genre: ");
+    let director = prompt("Director: ")
+    processPutForm(movieId, title, genre, director);
+}
 
-function processPutForm(id){
+function processPutForm(id, title, genre, director){
     $.ajax({
         url: "https://localhost:44347/api/Film/" + id,
         contentType: 'application/json',
-        data: JSON.stringify({"title": $('#title').val(), "genre": $('#genre').val(), "director": $('#director').val()}),
+        data: JSON.stringify({"id": id, "title": title, "genre": genre, "director": director}),
         headers: {'Access-Control-Allow-Origin': '*'},
-        dataType: 'json',
+        dataType: 'text',
         type: 'PUT',
+        success: function(){
+            location.reload();
+            
+        }
+        
     })
 }
 
@@ -70,7 +82,7 @@ function buildTable(data){
             <td> ${data[i].title} </td>
             <td> ${data[i].genre} </td>
             <td> ${data[i].director} </td>
-            <td> <button class="delete" onclick="deleteRow(${movieId})">Delete</button> | <button class="edit" onclick="editRow(${movieId})">Edit</button> </td>
+            <td> <button class="delete" onclick="deleteRow(${movieId})">Delete</button> | <button class="edit" onclick="putInfo(${movieId})">Edit</button> </td>
             
             </tr>`);
 
@@ -82,4 +94,74 @@ function buildTable(data){
     }
     
 }
+
+function searchBy(){
+    let movies = [];
+    let searchItem = $('#searchBar');
+    let parameter = document.getElementById("searchType");
+    $.ajax({
+        url: "https://localhost:44347/api/Film/",
+    contentType: 'application/json',
+    data: JSONObject = {"Movie": "Title, Genre, Director, ID"},
+    headers: {'Access-Control-Allow-Origin': '*'},
+    dataType: 'json',
+    type: 'GET',
+    success: function(data){
+        movies = data;
+    }
+    })
+    
+    switch(parameter){
+        case parameter == "title":
+            var results = movies.filter(function(el){
+                if(searchItem == el.title){
+                    return true;
+                }
+                else{
+                    return false;
+                }
+            })
+            break;
+        case parameter == "genre":
+            var results = movies.filter(function(el){
+                if(searchItem == el.genre){
+                    return true;
+                }
+                else{
+                    return false;
+                }
+               
+            })
+            break;
+        case parameter == "director":
+            var results = movies.filter(function(el){
+                if(searchItem == el.director){
+                    return true;
+                }
+                else{
+                    return false;
+                }
+                
+            })
+            break;
+    }
+    buildTable(results);
+    
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 

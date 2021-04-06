@@ -9,7 +9,7 @@ using MovieLibraryAPI.Data;
 namespace MovieLibraryAPI.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20210401163617_init")]
+    [Migration("20210406223953_init")]
     partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
