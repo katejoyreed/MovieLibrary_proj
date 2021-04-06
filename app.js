@@ -81,8 +81,8 @@ $("#table").delegate("button").on("click", function(e){
     }
 });
 
-function deleteRow(){
-    var id = $('#data[i]');
+function deleteRow(id){
+   
 $.ajax({
         
         url: "https://localhost:44347/api/Film/" + id,
@@ -90,9 +90,7 @@ $.ajax({
         headers: {'Access-Control-Allow-Origin': '*'},
         dataType: 'json',
         type: 'DELETE',
-        success: function(){
-            getAllMovies();
-        }
+        
 })
 }
 

@@ -13,6 +13,7 @@
     <script src="app.js"></script>
     <div id="movies"></div>
     
+    <div><a href="index.html"><button type="button">Home</button></a></div> 
 
     <table class="table table-striped">
         <tr class="bg-info">
@@ -48,22 +49,26 @@
             var table = document.getElementById(movieTable)
 
             for(var i = 0; i <data.length; i++){
-                var row = $(`<tr>
+                var row = (`<tr id = ${movieTable.id}> 
                     <td>` + data[i].title +`</td>
                     <td>` + data[i].genre +`</td>
                     <td>` + data[i].director +`</td>
                     <td>` + data[i].id + `</td>
-                    <td>` + '<button class="delete" onclick="deleteRow()">Delete</button> | <button class="edit">Edit</button>' +`</td>
+                    <td>` + '<button class="delete" onclick="deleteRow(${movieTable.id})">Delete</button> | <button class="edit">Edit</button>' +`</td>
                     
                     </tr>`);
 
                     
+
                     
                     $('#movieTable').append(row);
+                    
             }
         }
 
     </script>
+    
+
     <div id="postResponse"></div>
     <form id="postRequest">
         <input type="text" id="title" name="title" placeholder="Title"/>
