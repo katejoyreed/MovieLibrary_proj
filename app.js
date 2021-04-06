@@ -14,7 +14,7 @@ function processPostForm(){
        
     });
     $('#postRequest').submit(processPostForm);
-    
+    location.reload();
 
 
 
@@ -30,56 +30,7 @@ function processPutForm(id){
         type: 'PUT',
     })
 }
-function setup(){
-    var selectRow = null;
-    var keys = ["title","genre","director"];
 
-    function resetValues(title, genre, director){
-        forEachInput(function(key){
-            $("#"+key).val('');
-        });
-    }
-    function forEachInput(callback){
-        for(var i = 0; i <keys.length; i++){
-            callback(keys[i]);
-        }
-    }
-}
-function createRow(){
-    var row = $(".tr_clone").clone()
-    var newRow = row.appendTo("table").removeClass("tr_clone").fadeIn(1000);
-    forEachInput(function(key){
-        newRow.find("."+key).text($("#"+key).val());
-    });
-    resetValues();
-    selectedRow = null;
-}
-function editRow(row){
-    forEachInput(function(key){
-        $("#" + key).val(row.find("."+key).text());
-    })
-    selectedRow = row;
-}
-$("#display").on("click", function(){
-    if(selectedRow === null){
-        createRow();
-        resetValues();
-    }
-    else {
-        applyValues(selectedRow);
-        resetValues();
-        selectedRow = null;
-    }
-});
-$("#table").delegate("button").on("click", function(e){
-    e.preventDefault();
-    if($(e.target).hasClass('edit')){
-        editRow($(e.target).parent("td").parent("tr"));
-    }
-    else {
-        $(e.target).parent("td").parent("tr").fadeOut(1000).remove();
-    }
-});
 
 function deleteRow(id){
    
@@ -90,7 +41,45 @@ $.ajax({
         headers: {'Access-Control-Allow-Origin': '*'},
         dataType: 'json',
         type: 'DELETE',
+        success: function(){
+            location.reload()
+        }
         
 })
+}
+function getAll(){
+    $.ajax({
+    url: "https://localhost:44347/api/Film/",
+contentType: 'application/json',
+data: JSONObject = {"Movie": "Title, Genre, Director, ID"},
+headers: {'Access-Control-Allow-Origin': '*'},
+dataType: 'json',
+type: 'GET',
+success: function(data){
+    var movies = data;
+    buildTable(movies);
+}
+})
+}
+function buildTable(data){
+    //var table = document.getElementById(movieTable)
+    
+    for(var i = 0; i <data.length; i++){
+        var movieId = data[i].id
+        var row = (`<tr id = ${movieId}> 
+            <td> ${data[i].title} </td>
+            <td> ${data[i].genre} </td>
+            <td> ${data[i].director} </td>
+            <td> <button class="delete" onclick="deleteRow(${movieId})">Delete</button> | <button class="edit" onclick="editRow(${movieId})">Edit</button> </td>
+            
+            </tr>`);
+
+            
+
+            
+            $('#movieTable').append(row);
+            
+    }
+    
 }
 

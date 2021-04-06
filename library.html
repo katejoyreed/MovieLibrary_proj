@@ -12,7 +12,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="app.js"></script>
     <div id="movies"></div>
-    
+
     <div><a href="index.html"><button type="button">Home</button></a></div> 
 
     <table class="table table-striped">
@@ -20,53 +20,12 @@
             <th>Title</th>
             <th>Genre</th>
             <th>Director</th>
-            <th>ID</th>
             <th>Delete/Edit</th>
         </tr>
         <tbody id="movieTable">
-
+            <script>getAll()</script>
         </tbody>
     </table>
-
-
-    <script>
-        var myArray = []
-
-        $.ajax({
-            url: "https://localhost:44347/api/Film/",
-        contentType: 'application/json',
-        data: JSONObject = {"Movie": "Title, Genre, Director, ID"},
-        headers: {'Access-Control-Allow-Origin': '*'},
-        dataType: 'json',
-        type: 'GET',
-        success: function(data){
-            myArray = data
-            buildTable(myArray)
-        }
-        })
-
-        function buildTable(data){
-            var table = document.getElementById(movieTable)
-
-            for(var i = 0; i <data.length; i++){
-                var row = (`<tr id = ${movieTable.id}> 
-                    <td>` + data[i].title +`</td>
-                    <td>` + data[i].genre +`</td>
-                    <td>` + data[i].director +`</td>
-                    <td>` + data[i].id + `</td>
-                    <td>` + '<button class="delete" onclick="deleteRow(${movieTable.id})">Delete</button> | <button class="edit">Edit</button>' +`</td>
-                    
-                    </tr>`);
-
-                    
-
-                    
-                    $('#movieTable').append(row);
-                    
-            }
-        }
-
-    </script>
     
 
     <div id="postResponse"></div>
