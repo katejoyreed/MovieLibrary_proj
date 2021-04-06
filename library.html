@@ -19,6 +19,8 @@
             <th>Title</th>
             <th>Genre</th>
             <th>Director</th>
+            <th>ID</th>
+            <th>Delete/Edit</th>
         </tr>
         <tbody id="movieTable">
 
@@ -50,7 +52,11 @@
                     <td>` + data[i].title +`</td>
                     <td>` + data[i].genre +`</td>
                     <td>` + data[i].director +`</td>
+                    <td>` + data[i].id + `</td>
+                    <td>` + '<button class="delete" onclick="deleteRow()">Delete</button> | <button class="edit">Edit</button>' +`</td>
+                    
                     </tr>`);
+
                     
                     
                     $('#movieTable').append(row);
