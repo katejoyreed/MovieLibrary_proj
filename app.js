@@ -97,7 +97,7 @@ function buildTable(data){
 
 function searchBy(){
     let movies = [];
-    let searchItem = $('#searchBar');
+    let searchItem = document.getElementById("searchBar");
     let parameter = document.getElementById("searchType");
     $.ajax({
         url: "https://localhost:44347/api/Film/",
@@ -120,7 +120,9 @@ function searchBy(){
                 else{
                     return false;
                 }
+                
             })
+            alert(results);
             break;
         case parameter == "genre":
             var results = movies.filter(function(el){
@@ -132,6 +134,7 @@ function searchBy(){
                 }
                
             })
+            alert(results);
             break;
         case parameter == "director":
             var results = movies.filter(function(el){
@@ -143,9 +146,12 @@ function searchBy(){
                 }
                 
             })
+            alert(results);
             break;
     }
-    buildTable(results);
+    
+    
+    
     
 }
 
